@@ -1,0 +1,307 @@
+/* PLUMBING_V 1 — reset tecnico canonico (Toolkit/boilerplate/plumbing.css) */
+[hidden] { display: none !important; }
+img { max-width: 100%; height: auto; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+/* ══════════ E & B ESTETICA E BENESSERE — «Ci coccoliamo un po'?» ══════════
+   Il sito è la loro agenda: una giornata del centro dalle 9 alle 20, coi loro trattamenti e le loro durate. Ogni
+   sezione è un appuntamento: a sinistra l'ora stampata sul margine, il titolo passato con l'evidenziatore del colore
+   della sua famiglia (ocra la cera, corallo mani e piedi, malva il viso, salvia il corpo). La testata è la loro
+   facciata: piastrelle marroni lucide, il monogramma «e&b» sul nastro nero del loro logo. */
+:root {
+  --carta: #FBF8F2;
+  --carta-2: #F4EEE4;
+  --inchiostro: #1F1C1A;
+  --inchiostro-2: #5A514B;
+  --riga: #E5DDD1;
+  --riga-ora: #CFC3B3;
+  --margine: #E8B7AE;
+  --piastrella: #5B2419;
+  --piastrella-2: #6B2C1F;
+  --acciaio: #E4E7EA;
+  --nastro: #141212;
+  --muro: #F7F5F1;
+  --ocra: #D9A23A;
+  --ocra-evid: #F2D38A;
+  --corallo: #E0735F;
+  --corallo-evid: #F4B3A6;
+  --malva: #A88682;
+  --malva-evid: #DCC8D6;
+  --salvia: #7FA28A;
+  --salvia-evid: #C5DCCB;
+  --rosso: #C8352B;
+  --verde: #2E7D4F;
+  --f-titoli: 'Trirong', Georgia, 'Times New Roman', serif;
+  --f-testo: 'Proza Libre', 'Segoe UI', Arial, sans-serif;
+  --f-mano: 'Dawning of a New Day', 'Segoe Script', cursive; /* le sue cifre sono in stile antico (zero-prova): mai cifre a mano */
+  --f-eb: 'Chonburi', 'Trirong', Georgia, serif;
+  --gutter: 16px;
+  --testata-h: 70px;
+}
+@media (min-width: 760px) { :root { --gutter: 24px; } }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--carta); color: var(--inchiostro); font: 400 1rem/1.62 var(--f-testo); }
+a { color: var(--piastrella); }
+b, strong { font-weight: 700; }
+.salta { position: absolute; left: 12px; top: -60px; z-index: 100; padding: 10px 16px; background: #fff; color: var(--inchiostro); font-weight: 700; text-decoration: none; }
+.salta:focus { top: 10px; }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+section[id] { scroll-margin-top: calc(var(--testata-h) + 12px); }
+.intero { white-space: nowrap; }
+.corsivo { font-style: italic; }
+:focus-visible { outline: 3px solid var(--ocra); outline-offset: 2px; }
+/* finché i caratteri non arrivano il ripiego è più largo: una parola lunga va a capo invece di uscire (riserva-check, #233) */
+h1, h2, h3, .piede__frase { overflow-wrap: anywhere; }
+
+/* ── la testata: la loro facciata, piastrelle marroni lucide verticali ── */
+.facciata {
+  position: sticky; top: 0; z-index: 50; color: var(--acciaio);
+  background-color: var(--piastrella);
+  background-image:
+    linear-gradient(100deg, rgba(255, 255, 255, 0) 0 34%, rgba(255, 255, 255, .11) 44%, rgba(255, 255, 255, 0) 56%),
+    repeating-linear-gradient(180deg, transparent 0 25px, rgba(0, 0, 0, .3) 25px 26px, rgba(255, 255, 255, .06) 26px 27px),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, .3) 0 1px, transparent 1px 15px, rgba(255, 255, 255, .07) 15px 16px),
+    repeating-linear-gradient(90deg, var(--piastrella) 0 16px, var(--piastrella-2) 16px 32px, #53201A 32px 48px, #612A1D 48px 64px);
+  border-bottom: 3px solid #3A150D;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .3);
+}
+.facciata__dentro { display: flex; align-items: center; gap: 12px; max-width: 1200px; margin: 0 auto; padding: 8px var(--gutter); }
+/* il monogramma sul muro bianco e il nastro nero, come il loro logo */
+.marchio { display: inline-flex; flex-direction: column; align-items: flex-start; flex: none; padding: 5px 9px 7px; border-radius: 3px; background: var(--muro); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .1), 0 2px 6px rgba(0, 0, 0, .35); text-decoration: none; }
+.marchio__eb { font: 400 1.75rem/.9 var(--f-eb); letter-spacing: -.02em; color: #2A1712; }
+.marchio__nastro { margin-top: 3px; padding: 1px 7px 2px; border-radius: 1px; background: var(--nastro); color: #fff; font: italic 600 .66rem/1.25 var(--f-titoli); white-space: nowrap; }
+.voci { display: none; }
+.facciata__azioni { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.lingue { display: flex; }
+.lingue button { min-width: 38px; min-height: 38px; padding: 0 6px; border: 1px solid rgba(255, 255, 255, .45); background: transparent; color: var(--acciaio); font: 600 .8rem var(--f-testo); cursor: pointer; }
+.lingue button + button { border-left: 0; }
+.lingue button.is-on { background: var(--acciaio); color: var(--piastrella); }
+.prenota { display: none; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 3px; background: var(--nastro); color: #fff; font: italic 700 1rem var(--f-titoli); text-decoration: none; box-shadow: 0 1px 0 rgba(255, 255, 255, .25); }
+.prenota:hover { background: #000; }
+.burger { display: inline-flex; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; padding: 10px; border: 1px solid rgba(255, 255, 255, .45); border-radius: 3px; background: transparent; cursor: pointer; }
+.burger span { display: block; height: 2px; background: #fff; transition: transform .2s, opacity .2s; }
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.menu-mobile { position: fixed; top: var(--testata-h); left: 0; right: 0; z-index: 49; max-height: calc(100vh - var(--testata-h)); overflow-y: auto; padding: 8px var(--gutter) 22px; background: var(--carta); border-bottom: 3px solid var(--piastrella); box-shadow: 0 10px 24px rgba(0, 0, 0, .25); }
+.menu-mobile a { display: block; padding: 12px 2px; border-bottom: 1px solid var(--riga); color: var(--inchiostro); font: 600 1.3rem var(--f-titoli); text-decoration: none; }
+.menu-mobile__chiama { display: flex !important; justify-content: center; gap: 8px; margin-top: 14px; border: 0 !important; border-radius: 3px; background: var(--nastro); color: #fff !important; font-style: italic !important; }
+
+/* ── l'apertura ── */
+.apertura { display: grid; gap: 30px; max-width: 1200px; margin: 0 auto; padding: 28px var(--gutter) 34px; }
+.apertura__sopra { margin: 0; font: 600 1.02rem/1.35 var(--f-titoli); color: var(--piastrella); }
+/* la loro frase scritta a mano (dal loro post): il tratto di Dawning è sottile, un filo di contorno lo rende leggibile */
+.apertura__titolo { margin: 10px 0 18px; font: 400 clamp(3.2rem, 2.2rem + 4.6vw, 5.4rem)/1 var(--f-mano); color: var(--inchiostro); -webkit-text-stroke: .9px currentColor; text-wrap: balance; }
+.apertura__frase { max-width: 32em; margin: 0 0 16px; font-size: 1.08rem; }
+.voti { display: grid; gap: 4px; margin: 0 0 6px; }
+.voto { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; margin: 0; }
+.voto__n { font: 700 1.7rem/1 var(--f-titoli); color: var(--inchiostro); }
+.voto__su { color: var(--inchiostro-2); font-size: .95rem; }
+/* le stelle: una maschera SVG ripetuta e un gradiente fino a --voto (niente testo tagliato, #232) */
+.stelle { --piena: #C58A1C; --vuota: #D8CFC2; display: inline-block; width: 5.5em; height: 1.05em; font-size: 1.05rem; vertical-align: -.1em; background: linear-gradient(90deg, var(--piena) calc(var(--voto, 1) * 100%), var(--vuota) 0); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 21'%3E%3Cpath d='M11 1l2.9 6.2 6.8.8-5 4.6 1.3 6.7L11 16l-6 3.3 1.3-6.7-5-4.6 6.8-.8z'/%3E%3C/svg%3E") 0 0 / 1.1em 1.05em repeat-x; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 21'%3E%3Cpath d='M11 1l2.9 6.2 6.8.8-5 4.6 1.3 6.7L11 16l-6 3.3 1.3-6.7-5-4.6 6.8-.8z'/%3E%3C/svg%3E") 0 0 / 1.1em 1.05em repeat-x; }
+.stato { display: inline-flex; align-items: center; gap: 8px; margin: 12px 0 0; font-weight: 700; color: var(--inchiostro-2); }
+.stato::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: currentColor; opacity: .45; flex: none; }
+.stato.is-aperto::before { background: var(--verde); opacity: 1; box-shadow: 0 0 0 3px rgba(46, 125, 79, .22); }
+.apertura__azioni { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.bottone { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 20px; border: 2px solid var(--inchiostro); border-radius: 3px; background: transparent; color: var(--inchiostro); font: italic 700 1.08rem/1.1 var(--f-titoli); text-decoration: none; }
+.bottone:hover { background: var(--inchiostro); color: #fff; }
+.bottone--pieno { background: var(--nastro); border-color: var(--nastro); color: #fff; }
+.bottone--pieno:hover { background: #000; }
+
+/* ── la firma: l'agenda di oggi ── */
+.agenda { margin: 0; --quarto: 14px; --colonne: 1.9em repeat(3, minmax(0, 1fr)); }
+.agenda__pagina { position: relative; padding: 14px 12px 16px 34px; border-radius: 4px 10px 10px 4px; background: #FFFDF8; box-shadow: 0 1px 0 #E6DDD0, 0 16px 30px -12px rgba(70, 40, 25, .38), 0 3px 8px rgba(70, 40, 25, .14); }
+/* gli anelli dell'agenda, a sinistra */
+.agenda__anelli { position: absolute; left: 8px; top: 16px; bottom: 16px; width: 18px; background: radial-gradient(circle at 9px 50%, #FFFDF8 0 3px, #5E6368 3px 4.5px, #9BA1A6 4.5px 6.5px, transparent 7px) 0 0 / 18px 52px repeat-y; }
+.agenda__testa { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding-bottom: 5px; border-bottom: 2px solid var(--inchiostro); }
+.agenda__giorno { margin: 0; font: italic 700 1.15rem/1.2 var(--f-titoli); }
+.agenda__monogramma { margin: 0; font: 400 1.15rem/1 var(--f-eb); color: var(--piastrella); }
+.agenda__colonne { display: grid; grid-template-columns: var(--colonne); padding: 5px 0 4px; font: 700 .68rem/1.2 var(--f-titoli); letter-spacing: .08em; text-transform: uppercase; color: var(--inchiostro-2); }
+.agenda__colonne span { padding-left: 5px; }
+.agenda__griglia {
+  position: relative; display: grid; grid-template-columns: var(--colonne);
+  border-top: 1px solid var(--riga-ora);
+  background-image:
+    repeating-linear-gradient(180deg, transparent 0 calc(var(--quarto) * 4 - 1px), var(--riga-ora) calc(var(--quarto) * 4 - 1px) calc(var(--quarto) * 4)),
+    repeating-linear-gradient(180deg, transparent 0 calc(var(--quarto) - 1px), var(--riga) calc(var(--quarto) - 1px) var(--quarto));
+}
+.agenda__ora { grid-column: 1; align-self: start; padding: 1px 4px 0 0; font: 600 .68rem/1 var(--f-titoli); font-variant-numeric: tabular-nums; text-align: right; color: var(--inchiostro-2); }
+.appunt { position: relative; display: flex; flex-direction: column; min-width: 0; margin: 1px 2px 0 3px; padding: 0 4px 0 7px; }
+.appunt__evid { position: absolute; inset: 0; border-left: 3px solid var(--evid-bordo); border-radius: 2px; background: var(--evid); transform-origin: 0 50%; }
+/* il nome va a capo fra le parole (gli appuntamenti da un quarto d'ora hanno nomi corti, su una riga); col carattere di
+   ripiego anche dentro una parola, pur di non uscire (riserva-check) */
+.appunt__nome { position: relative; font: 400 1.1rem/var(--quarto) var(--f-mano); overflow-wrap: anywhere; color: #221B18; -webkit-text-stroke: .4px currentColor; }
+.appunt__durata { position: relative; margin-top: 2px; font: 600 .62rem/1.3 var(--f-titoli); font-variant-numeric: tabular-nums; color: #4E433B; }
+.appunt--c1 { --evid: var(--ocra-evid); --evid-bordo: var(--ocra); }
+.appunt--c2 { --evid: var(--corallo-evid); --evid-bordo: var(--corallo); }
+.appunt--c3 { --evid: var(--malva-evid); --evid-bordo: var(--malva); }
+/* la linea di adesso (la mette main.js all'ora vera, se il centro è aperto) */
+.agenda__adesso { position: absolute; left: 1.9em; right: 0; height: 2px; margin-top: -1px; background: var(--rosso); transform-origin: 0 50%; pointer-events: none; }
+.agenda__adesso::before { content: ''; position: absolute; left: -5px; top: -4px; width: 10px; height: 10px; border-radius: 50%; background: var(--rosso); }
+.agenda__adesso-ora { position: absolute; right: 0; bottom: 3px; padding: 1px 6px; border-radius: 2px; background: var(--rosso); color: #fff; font: italic 700 .72rem/1.3 var(--f-titoli); white-space: nowrap; }
+/* il timbro «Chiuso · apre…» (se il centro è chiuso) */
+.agenda__timbro { position: absolute; right: 18px; top: 42%; margin: 0; padding: 6px 12px; border: 3px double var(--rosso); border-radius: 4px; background: rgba(255, 253, 248, .9); color: var(--rosso); font: italic 700 1.05rem/1.25 var(--f-titoli); text-align: center; transform: rotate(-7deg); box-shadow: 0 2px 8px rgba(0, 0, 0, .12); pointer-events: none; }
+.agenda__didascalia { max-width: 36em; margin: 14px 4px 0; font-size: .9rem; color: var(--inchiostro-2); }
+.agenda__didascalia p { margin: 0 0 8px; }
+.citazione { margin: 10px 0 0; padding: 8px 14px; border-left: 3px solid var(--ocra); background: var(--carta-2); }
+.citazione p { margin: 0 0 4px; font: italic 600 1rem/1.4 var(--f-titoli); color: var(--inchiostro); }
+.citazione footer { font-size: .85rem; }
+
+/* ── la giornata: ogni sezione è un appuntamento ── */
+.giornata { max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter) 50px; }
+.appuntamento { --evid: var(--carta-2); --evid-bordo: var(--riga-ora); display: grid; grid-template-columns: minmax(0, 1fr); padding: 30px 0 34px; border-top: 1px solid var(--riga-ora); }
+.appuntamento--cera { --evid: var(--ocra-evid); --evid-bordo: var(--ocra); }
+.appuntamento--mani { --evid: var(--corallo-evid); --evid-bordo: var(--corallo); }
+.appuntamento--viso { --evid: var(--malva-evid); --evid-bordo: var(--malva); }
+.appuntamento--corpo, .appuntamento--laser, .appuntamento--domande { --evid: var(--salvia-evid); --evid-bordo: var(--salvia); }
+.appuntamento--dicono { --evid: var(--malva-evid); --evid-bordo: var(--malva); }
+.appuntamento--centro { --evid: var(--ocra-evid); --evid-bordo: var(--ocra); }
+.appuntamento--orari { --evid: var(--corallo-evid); --evid-bordo: var(--corallo); }
+.appuntamento__ora { margin: 0 0 4px; font: 700 1.05rem/1 var(--f-titoli); font-variant-numeric: tabular-nums; color: var(--piastrella); }
+.appuntamento__titolo { display: inline; margin: 0; padding: 0 .12em; font: 700 clamp(2rem, 1.5rem + 2vw, 2.9rem)/1.25 var(--f-titoli); background: linear-gradient(180deg, transparent 52%, var(--evid) 52% 92%, transparent 92%); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.appuntamento__sotto { max-width: 40em; margin: 14px 0 18px; color: var(--inchiostro-2); font-size: 1.02rem; }
+.appuntamento__corpo > p { max-width: 42em; }
+
+/* i listini: ogni trattamento con la sua durata disegnata (un quadratino = un quarto d'ora) */
+.listini { display: grid; gap: 6px 44px; }
+.listino__titolo { margin: 10px 0 6px; font: italic 700 1.2rem/1.2 var(--f-titoli); color: var(--inchiostro); }
+.listino { margin: 0 0 12px; padding: 0; list-style: none; }
+.listino li { display: grid; grid-template-columns: minmax(0, 1fr) auto 4.4em; align-items: center; gap: 12px; padding: 7px 0; border-bottom: 1px dashed var(--riga-ora); }
+.quarti { display: inline-block; width: calc(var(--q) * 12px - 2px); height: 11px; border-radius: 1px; background: repeating-linear-gradient(90deg, var(--evid-bordo) 0 10px, transparent 10px 12px); }
+.durata { font: 600 .92rem/1.2 var(--f-titoli); font-variant-numeric: tabular-nums; text-align: right; color: var(--inchiostro-2); white-space: nowrap; }
+.legenda { display: flex; align-items: center; gap: 8px; margin: 2px 0 18px; font-size: .85rem; color: var(--inchiostro-2); }
+
+/* ── le foto ── */
+.foto { display: block; width: 100%; padding: 0; border: 0; border-radius: 3px; overflow: hidden; background: var(--carta-2); cursor: zoom-in; }
+.foto img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .35s; }
+.foto:hover img { transform: scale(1.03); }
+figure { margin: 0; }
+figcaption { margin-top: 6px; font-size: .85rem; color: var(--inchiostro-2); }
+.foto-larga { margin: 18px 0 0; }
+.foto-larga .foto { aspect-ratio: 3 / 2; }
+.foto-facciata { margin: 6px 0 20px; }
+.foto-facciata .foto { aspect-ratio: auto; }
+.foto-facciata .foto img { height: auto; }
+.foto-fila { display: grid; gap: 10px; margin: 18px 0 8px; }
+.foto-fila .foto { aspect-ratio: 4 / 3; }
+.ig { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.ig .foto { aspect-ratio: 1; border-radius: 2px; }
+.listino__titolo--ig { margin-top: 22px; }
+.foto-coppia { display: grid; gap: 12px; margin-top: 18px; }
+.foto-coppia .foto { aspect-ratio: 3 / 2; }
+.centro { display: grid; gap: 22px; }
+.centro__foto { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-items: start; }
+.centro__foto figure:first-child .foto { aspect-ratio: 420 / 480; }
+.centro__foto figure:last-child .foto { aspect-ratio: 3 / 2; }
+
+/* ── dicono ── */
+.voti--dicono { margin: 16px 0 10px; }
+.recensioni { display: grid; gap: 14px; margin: 14px 0 0; padding: 0; list-style: none; }
+.recensione { padding: 16px 18px; border-left: 3px solid var(--evid-bordo); background: #fff; box-shadow: 0 1px 0 var(--riga); }
+.recensione__testo { margin: 0 0 10px; font-size: .98rem; }
+.recensione__chi { margin: 0; font-size: .85rem; color: var(--inchiostro-2); }
+.recensione__chi b { display: block; font: italic 700 1.05rem/1.3 var(--f-titoli); color: var(--inchiostro); }
+.dicono__nota { margin: 16px 0 0; font-size: .9rem; color: var(--inchiostro-2); }
+.dicono__nota a { font-weight: 700; }
+
+/* ── orari e dove ── */
+.orari { display: grid; gap: 24px; margin-top: 16px; }
+.settimana { width: 100%; max-width: 420px; margin: 12px 0 16px; border-collapse: collapse; }
+.settimana th { padding: 8px 6px; text-align: left; font-weight: 700; }
+.settimana td { padding: 8px 6px; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.settimana tr { border-bottom: 1px dashed var(--riga-ora); }
+.settimana tr.chiuso th, .settimana tr.chiuso td { color: #6E655E; font-style: italic; }
+.settimana tr.is-today { background: #F6E7C4; }
+.settimana tr.is-today th, .settimana tr.is-today td { color: #6B3D08; }
+.orari__azioni { display: flex; flex-wrap: wrap; gap: 10px; }
+.orari__social a { font-weight: 700; }
+.mappa { margin-top: 14px; border-radius: 3px; overflow: hidden; box-shadow: 0 0 0 1px var(--riga-ora); }
+.mappa iframe { display: block; width: 100%; height: 320px; border: 0; }
+.domande details { border-bottom: 1px dashed var(--riga-ora); }
+.domande summary { padding: 14px 4px; font: 700 1.15rem/1.3 var(--f-titoli); cursor: pointer; }
+.domande details p { max-width: 46em; margin: 0 0 16px; padding: 0 4px; }
+
+/* ── la chiusura: il nastro nero del logo ── */
+.nastro-piede { background: var(--nastro); color: #EFEAE3; }
+.piede { max-width: 900px; margin: 0 auto; padding: 38px var(--gutter) 96px; text-align: center; }
+.piede__eb { margin: 0; font: 400 3.4rem/1 var(--f-eb); color: #fff; }
+.piede__nastro { margin: 6px 0 0; font: italic 600 1.1rem/1.3 var(--f-titoli); color: #fff; }
+.piede__frase { margin: 18px 0 10px; font: 400 clamp(2.6rem, 2rem + 3vw, 3.8rem)/1.1 var(--f-mano); color: #fff; -webkit-text-stroke: .7px currentColor; }
+.piede__dove { margin: 0 0 16px; }
+.piede a { color: #F2C9A0; }
+.piede__cred { max-width: 54em; margin: 0 auto 10px; font-size: .84rem; color: #BDB5AC; }
+.piede__su { font-weight: 700; }
+
+/* ── reveal (plumbing) ── */
+.js .reveal { opacity: 0; }
+.js .reveal.in-view { opacity: 1; }
+html:not(.js) .reveal { opacity: 1; }
+.reduced-motion .reveal { opacity: 1 !important; }
+
+/* ── la barra e la lightbox ── */
+.action-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: grid; grid-template-columns: 1fr 1fr; background: var(--nastro); transform: translateY(100%); transition: transform .25s; }
+.action-bar.is-visible { transform: translateY(0); }
+.action-bar a { display: flex; align-items: center; justify-content: center; min-height: 52px; color: #fff; font: italic 700 1.08rem var(--f-titoli); text-decoration: none; }
+.action-bar a:first-child { background: var(--piastrella); }
+#lightbox { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(20, 18, 18, .94); }
+#lightbox[hidden] { display: none !important; }
+#lightbox img { width: auto; max-width: min(1400px, 100%); max-height: 88vh; }
+#lightboxClose { position: absolute; top: 14px; right: 16px; width: 48px; height: 48px; border: 1px solid rgba(255, 255, 255, .6); border-radius: 50%; background: transparent; color: #fff; font-size: 32px; line-height: 1; cursor: pointer; }
+
+/* ── le larghezze ── */
+@media (max-width: 559px) {
+  .appunt { margin: 1px 1px 0 2px; padding: 0 2px 0 6px; }
+  .appunt__nome { font-size: .96rem; }
+}
+@media (max-width: 359px) {
+  .facciata__dentro { gap: 8px; }
+  .marchio__eb { font-size: 1.5rem; }
+  .lingue button { min-width: 34px; }
+  .agenda { --colonne: 1.4em repeat(3, minmax(0, 1fr)); }
+  .agenda__pagina { padding-left: 24px; padding-right: 6px; }
+  .agenda__anelli { left: 4px; }
+  .appunt__nome { font-size: .82rem; }
+}
+@media (min-width: 560px) {
+  .prenota { display: inline-flex; }
+  .ig { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .foto-fila { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .foto-coppia { grid-template-columns: 1fr 1fr; }
+  .recensioni { grid-template-columns: 1fr 1fr; }
+  .agenda { --quarto: 15px; }
+}
+@media (min-width: 760px) {
+  .action-bar { display: none; }
+  .piede { padding-bottom: 40px; }
+  .listini { grid-template-columns: 1fr 1fr; }
+  .orari { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 40px; }
+}
+@media (min-width: 900px) {
+  /* il margine delle ore, come nell'agenda: l'ora a sinistra, la sezione a destra */
+  .appuntamento { grid-template-columns: 112px minmax(0, 1fr); gap: 0 26px; }
+  .appuntamento__ora { position: sticky; top: calc(var(--testata-h) + 20px); align-self: start; padding: 6px 18px 0 0; text-align: right; font-size: 1.5rem; }
+  .appuntamento__corpo { padding-left: 26px; border-left: 2px solid var(--margine); }
+  .centro { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 34px; }
+}
+@media (min-width: 1040px) {
+  :root { --testata-h: 76px; }
+  .marchio__eb { font-size: 2rem; }
+  .voci { display: flex; flex-wrap: wrap; gap: 4px 22px; margin-left: 22px; }
+  .voci a { padding: 4px 1px; color: var(--acciaio); font: italic 700 1.08rem var(--f-titoli); text-decoration: none; text-shadow: 0 1px 1px rgba(0, 0, 0, .45); }
+  .voci a:hover, .voci a[aria-current="true"] { color: #fff; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+  .burger { display: none; }
+  .apertura { grid-template-columns: minmax(0, .9fr) minmax(0, 1fr); align-items: start; gap: 48px; padding-top: 44px; }
+  .apertura__testo { padding-top: 26px; }
+  .recensioni { grid-template-columns: repeat(3, 1fr); }
+  .ig { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+
+/*AGENDA*/
+/* generato da _ebe_agenda.mjs: la griglia dell'agenda e lo stato d'attesa della firma */
+.agenda__griglia { grid-template-rows: repeat(44, var(--quarto)); }
+.firma-attesa .agenda__griglia .appunt { opacity: 0; }
+/*/AGENDA*/
